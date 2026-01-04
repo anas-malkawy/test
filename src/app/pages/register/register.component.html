@@ -1,0 +1,85 @@
+<div class="login-layout">
+    <!-- Visual Side -->
+    <div class="visual-side">
+        <div class="visual-overlay"></div>
+        <div class="visual-content">
+            <div class="brand-badge">
+                <i class="pi pi-shield"></i>
+                <span>Secure Portal</span>
+            </div>
+            <div class="hero-text">
+                <h1>Join Us</h1>
+                <p>Start your journey with the most advanced platform.</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="pi pi-bolt"></i>
+                        <span>Instant Setup</span>
+                    </div>
+                    <div class="feature">
+                        <i class="pi pi-users"></i>
+                        <span>Team Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Side -->
+    <div class="form-side">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Create Account</h2>
+                <p>Get started in minutes</p>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+                <div class="form-field">
+                    <label for="name">Full Name</label>
+                    <p-iconfield>
+                        <p-inputicon styleClass="pi pi-user" />
+                        <input pInputText id="name" type="text" formControlName="name" placeholder="John Doe"
+                            class="w-full" />
+                    </p-iconfield>
+                    <small *ngIf="name.touched && name.invalid" class="error-msg">
+                        Name is required.
+                    </small>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email Address</label>
+                    <p-iconfield>
+                        <p-inputicon styleClass="pi pi-envelope" />
+                        <input pInputText id="email" type="email" formControlName="email" placeholder="name@example.com"
+                            class="w-full" />
+                    </p-iconfield>
+                    <small *ngIf="email.touched && email.invalid" class="error-msg">
+                        Enter a valid email.
+                    </small>
+                </div>
+
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <p-iconfield>
+                        <p-inputicon styleClass="pi pi-lock" />
+                        <p-password inputId="password" formControlName="password" [toggleMask]="true" [feedback]="true"
+                            placeholder="Create a password" [inputStyle]="{ width: '100%' }"
+                            styleClass="w-full"></p-password>
+                    </p-iconfield>
+                    <small *ngIf="password.touched && password.invalid" class="error-msg">
+                        Password is required (min 8 chars).
+                    </small>
+                </div>
+
+                <p-button label="Create Account" styleClass="w-full" [loading]="loading" type="submit"></p-button>
+
+                <p class="login-prompt">
+                    Already have an account? <a routerLink="/login">Sign in</a>
+                </p>
+            </form>
+
+            <div class="footer-copy">
+                &copy; 2025 Company Inc. All rights reserved.
+            </div>
+        </div>
+    </div>
+</div>

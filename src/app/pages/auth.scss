@@ -1,0 +1,353 @@
+:host {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.login-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    background: #0f172a;
+
+    @media (min-width: 1024px) {
+        grid-template-columns: 1.2fr 1fr;
+    }
+}
+
+// --- Visual Side ---
+.visual-side {
+    display: none; // Hidden on mobile
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?q=80&w=2532&auto=format&fit=crop'); // Abstract Dark 3D
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+
+    @media (min-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 64px;
+    }
+}
+
+.visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.85) 100%);
+    z-index: 1;
+    backdrop-filter: blur(2px);
+}
+
+.visual-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 10px 20px;
+    border-radius: 99px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: fit-content;
+
+    i {
+        font-size: 1.25rem;
+        color: #60a5fa;
+    }
+
+    span {
+        color: white;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 1rem;
+    }
+}
+
+.hero-text {
+    max-width: 540px;
+    margin-bottom: 40px;
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+        color: #ffffff;
+        margin-bottom: 24px;
+        letter-spacing: -2px;
+    }
+
+    p {
+        font-size: 1.35rem;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.6;
+        margin-bottom: 32px;
+    }
+}
+
+.features {
+    display: flex;
+    gap: 24px;
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+
+        i {
+            color: #4ade80;
+        }
+    }
+}
+
+
+// --- Form Side ---
+.form-side {
+    background: #0b1120; // Very dark blue/black
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    position: relative;
+    width: 100%;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-header {
+    margin-bottom: 40px;
+    text-align: left;
+
+    h2 {
+        font-size: 2.25rem;
+        color: white;
+        font-weight: 700;
+        margin: 0 0 10px;
+        letter-spacing: -0.5px;
+    }
+
+    p {
+        color: #94a3b8;
+        margin: 0;
+        font-size: 1rem;
+    }
+}
+
+.login-form,
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+}
+
+// --- Component Overrides ---
+:host ::ng-deep {
+    .p-iconfield {
+        width: 100%;
+    }
+
+    // Icons
+    .p-inputicon {
+        top: 50%;
+        transform: translateY(-50%);
+        color: #64748b;
+        z-index: 2;
+    }
+
+    // Inputs
+    .p-inputtext {
+        width: 100%;
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: white;
+        padding: 12px 12px 12px 40px; // Left padding for icon
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+
+        &:enabled:focus {
+            border-color: #60a5fa;
+            background: #1e293b;
+            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+        }
+
+        &:enabled:hover {
+            border-color: #475569;
+            background: #233045;
+        }
+    }
+
+    // Password specific
+    .p-password {
+        width: 100%;
+    }
+
+    .p-password-input {
+        width: 100%;
+        padding-left: 40px; // Ensure padding matches standard input
+    }
+
+    // Button
+    .p-button {
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 8px;
+
+        &.p-button-primary {
+            background: #3b82f6;
+            border: none;
+
+            &:hover {
+                background: #2563eb;
+            }
+        }
+
+        &.p-button-secondary {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: white;
+
+            &:hover {
+                background: #334155;
+            }
+        }
+    }
+
+    // Checkbox
+    .p-checkbox .p-checkbox-box {
+        background: #1e293b;
+        border-color: #475569;
+        border-radius: 4px;
+
+        &.p-highlight {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+    }
+}
+
+.error-msg {
+    color: #f87171;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #cbd5e1;
+    cursor: pointer;
+    user-select: none;
+}
+
+.forgot-link,
+.back-link {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #93c5fd;
+        text-decoration: underline;
+    }
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 12px 0;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #334155;
+    }
+
+    span {
+        padding: 0 12px;
+        font-weight: 500;
+    }
+}
+
+.signup-prompt,
+.login-prompt {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-top: 24px;
+
+    a {
+        color: #60a5fa;
+        text-decoration: none;
+        font-weight: 600;
+
+        &:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer-copy {
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    width: 100%;
+    color: #475569;
+    font-size: 0.75rem;
+    left: 0;
+    pointer-events: none;
+}
